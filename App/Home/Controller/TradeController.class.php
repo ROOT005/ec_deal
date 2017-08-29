@@ -216,20 +216,18 @@ class TradeController extends TradeFatherController {
 		$r[]=$this->guadan($sellnum, $sellprice, 'sell', $currency);
 		//成交
 		$r[]=$this->trade($currency['currency_id'], 'sell', $sellnum, $sellprice);
-		
-		
 		if (in_array(false, $r)){
 		    M()->rollback();
 		    $msg['status']=-7;
 		    $msg['info']='操作未成功';
 		    $this->ajaxReturn($msg);
 		}else {
+
 		    M()->commit();
 		    $msg['status']=1;
-		    $msg['info']='操作成功';
+		    $msg['info']='操作成功';            
 		    $this->ajaxReturn($msg);
 		}
-		
 	} 
 
 	//我的成交
@@ -358,7 +356,8 @@ class TradeController extends TradeFatherController {
         $r[]=M('Orders')->where("trade_num>0 and status=0")->setField('status',1);
         $r[]=M('Orders')->where("num=trade_num")->setField('status',2);
         
-
+        //查询积分兑换人民币比例
+        $release=(int)M('Config')->where('`key`="score2rmb"')->getField('value');
         //处理资金
         switch ($type){
            
@@ -370,8 +369,8 @@ class TradeController extends TradeFatherController {
                 $r[]=$this->setUserMoney($this->member['member_id'],$order['currency_trade_id'], $order_money, 'dec', 'forzen_num');
                 
                 $r[]=$this->setUserMoney($trade_order['member_id'],$trade_order['currency_id'],  $trade_num, 'dec', 'forzen_num');
-##############################返回余额#################################
-                $r[]=$this->setUserMoney($trade_order['member_id'],0, $trade_order_money, 'inc', 'num');
+##############################返回余额###############################
+                $r[]=$this->setUserMoney($trade_order['member_id'],0, $trade_order_money*$release/100, 'inc', 'num');
                 //$r[]=$this->setUserMoney($trade_order['member_id'],$trade_order['currency_trade_id'], $trade_order_money, 'inc', 'num');
                 
                 //返还多扣除的部分
@@ -391,7 +390,7 @@ class TradeController extends TradeFatherController {
 ########################//卖出去原来的加积分###########################
                 ##把卖出去得到的积分兑换成余额
                 
-                $r[]=$this->setUserMoney($this->member['member_id'],0, $order_money, 'inc', 'num');
+                $r[]=$this->setUserMoney($this->member['member_id'],0, $order_money*$release/100, 'inc', 'num');
                 //$r[]=$this->setUserMoney($this->member['member_id'],$order['currency_trade_id'], $order_money, 'inc', 'num');
                  
                 $r[]=$this->setUserMoney($trade_order['member_id'],$trade_order['currency_id'], $trade_num*(1-($order['fee']/100)), 'inc', 'num');

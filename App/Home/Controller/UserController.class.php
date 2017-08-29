@@ -15,10 +15,16 @@ class UserController extends HomeController {
     }
     public function index(){
         $where['member_id']=$_SESSION['USER_KEY_ID'];
+        //币
         $currency_user=M('Currency_user')
             ->join("left join ".C('DB_PREFIX')."currency on ".C('DB_PREFIX')."currency.currency_id=".C('DB_PREFIX')."currency_user.currency_id")
             ->field(''.C('DB_PREFIX').'currency_user.*,('.C('DB_PREFIX').'currency_user.num+'.C('DB_PREFIX').'currency_user.forzen_num) as count,'.C('DB_PREFIX').'currency.currency_name,'.C('DB_PREFIX').'currency.currency_mark')
-            ->where($where)->order('sort')->select();
+            ->where($where)->where(C('DB_PREFIX').'currency.currency_id!=1')->order('sort')->select();
+        //积分
+        $score_user=M('Currency_user')
+            ->join("left join ".C('DB_PREFIX')."currency on ".C('DB_PREFIX')."currency.currency_id=".C('DB_PREFIX')."currency_user.currency_id")
+            ->field(''.C('DB_PREFIX').'currency_user.*,('.C('DB_PREFIX').'currency_user.num+'.C('DB_PREFIX').'currency_user.forzen_num) as count,'.C('DB_PREFIX').'currency.currency_name,'.C('DB_PREFIX').'currency.currency_mark')
+            ->where($where)->where(C('DB_PREFIX').'currency.currency_id=1')->order('sort')->select();
         $allmoneys = null;
         foreach ($currency_user as $k=>$v){
             $Currency_message=$this->getCurrencyMessageById($v['currency_id']);
@@ -30,6 +36,7 @@ class UserController extends HomeController {
 
         $u_info = M('Member')->field('rmb,forzen_rmb')->where($where)->find();
         $this->assign('u_info',$u_info);
+        $this->assign('score_user', $score_user[0]);
         $this->assign('allmoneys',$allmoneys);
         $this->assign('currency_user',$currency_user);
         $this->display();
