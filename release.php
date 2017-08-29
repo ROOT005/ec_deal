@@ -6,7 +6,8 @@ if($con){
     //查询积分释放比例
     $sql='SELECT value FROM yang_config where `key`="release_rate"';
     $release_rate = mysql_query($sql);
-    $row = mysql_fetch_array($release_rate);
+    $rate = mysql_fetch_array($release_rate)[0];
+    
     print_r($row);
 }else{
     die;
