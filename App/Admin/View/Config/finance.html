@@ -21,30 +21,38 @@
                                     <th><i class="require-red">*</i>交易时间段：结束时间</th>
                                     <td>时：<input type="text" id="" value="{$config.jiaoyi_over_hour}" size="30" name="jiaoyi_over_hour" class="common-text">&nbsp;&nbsp;&nbsp;分：<input type="text" id="" value="{$config.jiaoyi_over_minute}" size="30" name="jiaoyi_over_minute" class="common-text"></td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th><i class="require-red">*</i>人工充值最低限额：</th>
                                     <td><input type="text" id="" value="{$config.pay_min_money}" size="85" name="pay_min_money" class="common-text"></td>
                                 </tr>
                                 <tr>
                                     <th><i class="require-red">*</i>人工充值最高限额：</th>
                                     <td><input type="text" id="" value="{$config.pay_max_money}" size="85" name="pay_max_money" class="common-text"></td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <th><i class="require-red">*</i>登录超时退出（分钟）：</th>
                                     <td><input type="num" id="" value="{$config.time_limit}" size="85" name="time_limit" class="common-text">为0则此项无配置</td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th><i class="require-red">*</i>人工充值手续费：</th>
                                     <td><input type="text" id="" value="{$config.pay_fee}" size="85" name="pay_fee" class="common-text">元&nbsp;&nbsp;&nbsp;固定费用，无请填0</td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <th><i class="require-red">*</i>人工提现手续费：</th>
                                     <td><input type="text" id="" value="{$config.fee}" size="85" name="fee" class="common-text">%&nbsp;&nbsp;&nbsp;比例费用，无请填0</td>
                                 </tr>
-                                 <tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>平台积分释放比例：</th>
+                                    <td><input type="text" id="" value="{$config.relaease_rate}" size="85" name="relaease_rate" class="common-text">%&nbsp;&nbsp;&nbsp;无请填0</td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>积分/人民币兑换比例：</th>
+                                    <td><input type="text" id="" value="{$config.score2rmb}" size="85" name="score2rmb" class="common-text">%&nbsp;&nbsp;&nbsp;</td>
+                                </tr>
+                                 <!-- <tr>
                                     <th><i class="require-red">*</i>提币手续费：</th>
                                     <td><input type="text" id="" value="{$config.tcoin_fee}" size="85" name="tcoin_fee" class="common-text">%&nbsp;&nbsp;&nbsp;比例费用，无请填0</td>
-                                </tr>
+                                </tr> -->
                                  <tr>
                                     <th><i class="require-red">*</i>网站总交易额增加：</th>
                                     <td><input type="text" id="" value="{$config.transaction_false}" size="85" name="transaction_false" class="common-text">用于首页显示</td>

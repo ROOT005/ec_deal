@@ -81,7 +81,7 @@ a{text-decoration:none;}
 				    <td class="assets02">{$member.count|default=0.00}</td>
 				    <td class="assets02">{$member.rmb|default=0.00}</td>
 				    <td class="assets02">{$member.forzen_rmb|default=0.00}</td>
-				    <td class="cost assets03"><a href="{:U('User/pay')}">充值</a> &nbsp;&nbsp;<a href="{:U('User/draw')}">提现</a></td>
+				    <td class="cost assets03"><a href="{:U('User/draw')}">提现</a></td>
 				    <td></td>
 				</tr>
 				<volist name='currency_user' id='vo' > 	
@@ -91,8 +91,6 @@ a{text-decoration:none;}
 					    <td class="assets02">{$vo.num|default=0.00}</td>
 					    <td class="assets02">{$vo.forzen_num|default=0.00}</td>
 					    <td class="cost interest assets03">
-						<a href="{:U('Pay/bpay',array('currency_id'=>$vo['currency_id']))}">充币</a>
-                        &nbsp;&nbsp;<a href="{:U('Pay/tcoin',array('currency_id'=>$vo['currency_id']))}">提币</a>
 						</td>
 					    <td class="cost interest" style="color:#f60;"><a style="text-decoration: none;" href="{:U('Orders/index',array('currency'=>$vo['currency_mark']))}" ><input value="去交易"  type="button"></a></td>
 				    </tr>
