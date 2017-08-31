@@ -115,13 +115,13 @@ class ModifyMemberController extends CommonController {
             $data['status']=-1;
             $data['info'] = "手机号码不正确";
             $this->ajaxReturn($data);
-        }  
-        $user_phone=M("Member")->field('phone')->where("phone='$phone'")->find();
+        }
+        /*$user_phone=M("Member")->field('phone')->where("phone='$phone'")->find();
         if (!empty($user_phone)){
             $data['status']=-2;
             $data['info'] = "手机号码已经存在";
             $this->ajaxReturn($data);
-        }
+        }*/
         $r = sandPhone($phone,$this->config['CODE_NAME'],$this->config['CODE_USER_NAME'],$this->config['CODE_USER_PASS']);
 		if(!$r[1]){
 			$data['status']=1;
@@ -129,19 +129,8 @@ class ModifyMemberController extends CommonController {
         	$this->ajaxReturn($data);exit;
 		}else{
 			$data['status'] =-3;
-        	$data['info']=chuanglan_status($r[1]);
+        	$data['info']=$r;
         	$this->ajaxReturn($data);exit;
 		}
- 
-        
-//         if($r!="短信发送成功"){
-//             $data['status']=0;
-//             $data['info'] = $r;
-//             $this->ajaxReturn($data);
-//         }else{
-//             $data['status']=1;
-//             $data['info'] = $r;
-//             $this->ajaxReturn($data);
-//         }
     }
 }

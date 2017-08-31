@@ -12,20 +12,13 @@
       <div class="ybc_list">
         <div class="ybcoin">
           <h2 class="left">CNY提现</h2>
-          <!-- <p class="right" style=" margin-top:10px; color:#333;">您可以设置多个提款地址，这样您提款到不同的银行卡、钱包或其它平台时就会更方便。</p> -->
           <div class="clear"></div>
         </div>
       </div>
       <div class="support_ybc pass_ybc" id="verifyon"> 
-        <!--<ul id="pass_change">
-		<li class="selectTag"><a onClick="selectTag('tagContent0',this)" href="javascript:void(0)">提现到银行卡</a> </li>
-		<li class="note"><a onClick="selectTag('tagContent1',this)" href="javascript:void(0)">提现到元宝理财</a></li>
-		<div class="clear"></div>
-        </ul>-->
         <div id="tagContent" class="passContent">
           <div class="tagContent selectTag" id="tagContent0">
             <h2 class="choose_one">选择一个提款地址 
-              <!-- <a href="/news/detail/?id=736" style="float: right;margin-right:30px; color: red;" target="_blank">提现银行卡暂不支持邮政储蓄银行</a> --> 
             </h2>
             <table class="my_add" border="0" cellpadding="0" cellspacing="0">
               <thead>
@@ -252,6 +245,7 @@ function zfb(){
 				}
 			</script>
             <h2 class="choose_one">输入要提款的金额<span>(可用余额：<strong>￥{$rmb.rmb}</strong>)</span><span style="float:right;margin-right:20px;"><strong id="rmbout_showtips"></strong></span></h2>
+            <input type="hidden" id="mo" value="{$phone.phone}">
            
            <form action="{:U('User/withdraw')}" method="post" id="drawform" jump-url="{:U('User/draw')}">
            <table class="my_add" border="0" cellpadding="0" cellspacing="0">
@@ -451,35 +445,31 @@ function chexiao(id){
 		
 }
 function sandPhone(){
-        var i=120;
-       
-		var phone = $("mo").val();
-        if(phone && /^1[3|4|5|8]\d{9}$/.test(phone)){
-            layer.msg("请填写正确的手机号码");
-        }else{
-            $.post("{:U('ModifyMember/ajaxSandPhone')}",{phone:encodeURIComponent($("#mo").val())},
-                    function(d){
-                       layer.msg(d.info);
-                        if(d.status==1){
-							var tid2;
-							tid2=setInterval(function(){
-								if($("#msgt").attr("data-key")=='off'){
-									$("#msgt").attr("disabled",true);
-									$("#msgt").removeClass("class");
-									$("#msgt").addClass("button again");
-									i--;
-									$("#msgt").val(i+"秒后可重新发送");
-									if(i<=0){
-										$("#msgt").removeAttr("disabled").val("重新发送验证码");
-										$("#msgt").attr("data-key","on");
-									}
-								}
-							},1000);
-							 i=120;
-                            $("#msgt").attr("data-key","off");
-                        }
-                    });
-        }
-    }</script>
+    var i=120;
+		var phone = $("#mo").val();
+    $.post("{:U('ModifyMember/ajaxSandPhone')}",{phone:encodeURIComponent($("#mo").val())},
+            function(d){
+               layer.msg(d.info);
+                if(d.status==1){
+			var tid2;
+			tid2=setInterval(function(){
+				if($("#msgt").attr("data-key")=='off'){
+					$("#msgt").attr("disabled",true);
+					$("#msgt").removeClass("class");
+					$("#msgt").addClass("button again");
+					i--;
+					$("#msgt").val(i+"秒后可重新发送");
+					if(i<=0){
+						$("#msgt").removeAttr("disabled").val("重新发送验证码");
+						$("#msgt").attr("data-key","on");
+					}
+				}
+			},1000);
+			 i=120;
+                    $("#msgt").attr("data-key","off");
+                }
+            });
+}
+</script>
 <!--footer start--> 
 <include file="App/Home/View/Public/footer.html"/>

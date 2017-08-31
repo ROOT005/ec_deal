@@ -489,11 +489,14 @@ class UserController extends HomeController {
             ->select();
         //显示可用余额
         $rmb = $member->field('rmb')->where("member_id ={$_SESSION['USER_KEY_ID']}")->find();
-        
         $this->assign('rmb',$rmb);
+        //传电话
+        $phone = $member->field('phone')->where("member_id ={$_SESSION['USER_KEY_ID']}")->find();
+        $this->assign("phone", $phone);
         $this->assign('draw_info',$draw_info);
         $this->assign('bank_info',$bank_info);
-        $this->assign('auth', $this->auth['name']);//传递真实姓名
+        $this->assign('auth', $this->auth['name']);
+        //传递真实姓名
         $this->assign('areas',$province);
         $this->assign('art',$art);
         $this->display();

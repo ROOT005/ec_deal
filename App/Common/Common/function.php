@@ -256,39 +256,32 @@ function num_format($num){
 * @param string $product 产品id，可选
 * @param string $extno   扩展码，可选
 */
+//https://api.smsbao.com/sms?u=USERNAME&p=PASSWORD&m=PHONE&c=CONTENT
 function sandPhone( $mobile, $name, $user_name, $user_password, $needstatus = 'true', $product = '', $extno = '') {
-	$PORT=80;//端口号默认80
-	$IP="222.73.117.156";
-	$chuanglan_config['api_account']=iconv('UTF-8', 'UTF-8',$user_name);
-	$chuanglan_config['api_password']=iconv('UTF-8', 'UTF-8', $user_password);
-	$chuanglan_config['api_send_url']="http://".$IP.":".$PORT."/msg/HttpBatchSendSM";
-	$code = rand(100000,999999);
-	session(array('name'=>'code','expire'=>600));
-	session('code',$code);  //设置session
-	session('num',session('num')+1);  //设置session
-	session('time',time());
-	
-	/*if (session('num')>3){	
-			$arr[1]="121";
-			return $arr;
- 	}*/
-	
-	$data="您好，您的验证码是".$code;//要发送的短信内容
-	$content=mb_convert_encoding("$data",'UTF-8', 'UTF-8');
-	//创蓝接口参数
-	$postArr = array (
-			'account' => $chuanglan_config['api_account'],
-			'pswd' => $chuanglan_config['api_password'],
-			'msg' => $content,
-			'mobile' => $mobile,
-			'needstatus' => $needstatus,
-			'product' => $product,
-			'extno' => $extno
-	);
+    $host="http://106.ihuyi.com/webservice/sms.php?method=GetNum";
+    $chuanglan_config['api_account']=iconv('UTF-8', 'UTF-8',$user_name);
+    $chuanglan_config['api_password']=iconv('UTF-8', 'UTF-8', $user_password);
 
-	$result = curlPost( $chuanglan_config['api_send_url'] , $postArr);
-	$result=execResult($result);
-	return $result;
+    $code = rand(100000,999999);
+    session(array('name'=>'code','expire'=>600));
+    session('code',$code);  //设置session
+    session('num',session('num')+1);  //设置session
+    session('time',time());
+
+    $data='您的验证码是：【'.$code.'】。请不要把验证码泄露给其他人。如非本人操作，可不用理会！';//要发送的短信内容
+    $content=mb_convert_encoding("$data",'UTF-8', 'UTF-8');
+    $url='http://106.ihuyi.com/webservice/sms.php?method=Submit&account='.$chuanglan_config['api_account'].'&password='.$chuanglan_config['api_password'].'&mobile='.$mobile.'&content='.$content;
+
+   
+    $ch = curl_init();
+    $timeout = 5;
+    curl_setopt ($ch, CURLOPT_URL, $url);
+    curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    return $result;
 }
 
 /**
@@ -307,7 +300,7 @@ function execResult($result){
  * @param array $postFields //请求参数
  * @return mixed
  */
-function curlPost($url,$postFields){
+function curlPost1($url,$postFields){
 	$postFields = http_build_query($postFields);
 	$ch = curl_init ();
 	curl_setopt ( $ch, CURLOPT_POST, 1 );
@@ -320,6 +313,21 @@ function curlPost($url,$postFields){
 
 	return $result;
 }
+
+function curlPost($url, $curlPost){
+        $curlPost=http_build_query($curlPost);
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_NOBODY, true);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $curlPost);
+        $return_str = curl_exec($curl);
+        curl_close($curl);
+        return $return_str;
+}
+ 
 
 function chuanglan_status($num){
 	switch ($num){
