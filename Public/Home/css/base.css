@@ -7,7 +7,7 @@ li{ list-style:none;}
 input{ vertical-align:middle; font-size:12px; *line-height:40px;}
 img{ border:0;}
 a{ text-decoration:none;}
-a:hover{ color:#f60; text-decoration:underline;}
+a:hover{ color:#C0A062; text-decoration:underline;}
 .clear{ clear:both;}
 h1,h2,h3,h4,h5,h6{ font-weight:normal;}
 textarea{ border:1px solid #dddcda;}
@@ -36,21 +36,21 @@ textarea{ border:1px solid #dddcda;}
 .nav li,.friendLink li,.footerNav li,.list li{ float:left;}
 .nav li{ margin-left:0px;}
 .nav li a{ float:left; padding:0 15px; text-align:center; height:34px; line-height:34px; color:#aeaead; font-size:16px; text-decoration:none;}
-.nav li a.current{ color:#fff; background:#f60; border-radius:4px;}
+.nav li a.current{ color:#fff; background:#C0A062; border-radius:4px;}
 .nav li a.current:hover{ color:#fff;}
-.nav li a:hover{ color:#f60;}
+.nav li a:hover{ color:#C0A062;}
 .nav .mainlevel{}
 .nav .mainlevel ul {display:none; position:absolute; right:0px; top:40px; z-index:999; border-radius:0 0 5px 5px;}
 .nav .mainlevel ul li{ float:none;}
 .nav .mainlevel ul li a{ background:#f6f5f3; color:#666; width:80px; text-align:center; height:45px; line-height:45px; font-size:14px;}
-.nav .mainlevel ul li a:hover{ background:#f60; color:#fff;}
+.nav .mainlevel ul li a:hover{ background:#C0A062; color:#fff;}
 .nav .mainlevel ul #hello_world{ background:url(https://ybexsta.yuanbaohui.com/images/down.jpg);}
 .home_down{ position:absolute; right:16px; top:12px;}
 
 .loginArea{float:right; height:30px; line-height:30px; width:90px; overflow:hidden;  padding-left:15px;}
 .loginArea a,.person a{color:#999;}
-.loginArea a:hover{color:#f60;}
-.loginArea a:hover,.lan a:hover,.friendLink li a:hover,.footerNav li a:hover,.accountList li a:hover{color:#f60; text-decoration:underline;}
+.loginArea a:hover{color:#C0A062;}
+.loginArea a:hover,.lan a:hover,.friendLink li a:hover,.footerNav li a:hover,.accountList li a:hover{color:#C0A062; text-decoration:underline;}
 .lan{ position:absolute; right:0; top:10px;}
 .lan a{ color:#999;}
 .sep{color:#e1e1df;}
@@ -64,7 +64,7 @@ textarea{ border:1px solid #dddcda;}
 .account:hover a{ color:#fff; background:#555 url(../images/down_hover.jpg) 64px center no-repeat; border-radius:5px 5px 0 0;}
 .account:hover .accountList{ display:block; position:absolute; top:28px; right:0; width:120px; padding:0; border-radius:0 0 5px 5px;}
 .account:hover .accountList li a{ display:block; background:#555; color:#eee; width:105px; padding-left:15px; height:26px; line-height:26px; text-align:left; border-radius:0; text-decoration:none;}
-.account:hover .accountList li a:hover{ background:#f60; color:#fff; }
+.account:hover .accountList li a:hover{ background:#C0A062; color:#fff; }
 
 /*** QQ群 ***/
 /*.group ul{ width:1000px; margin:30px auto 20px auto;}
@@ -128,7 +128,7 @@ textarea{ border:1px solid #dddcda;}
 #slides{ position:relative;	width:1000px; height:90px;}
 #slides .next { position:absolute; top:-24px; right:22px; display:block; font-family:simsun; font-size:16px; font-weight:bold; color:#999;}
 #slides .prev { position:absolute; top:-24px; right:40px; display:block; font-family:simsun; font-size:16px; font-weight:bold; color:#999;}
-#slides .next:hover,#slides .prev:hover{ text-decoration:none; color:#f60;}
+#slides .next:hover,#slides .prev:hover{ text-decoration:none; color:#C0A062;}
 .slides_container {	width:642px; height:90px; overflow:hidden; position:relative;}
 .pagination { margin:26px auto 0; width:100px;}
 .pagination li { float:left; margin:0 1px;}
@@ -138,7 +138,7 @@ textarea{ border:1px solid #dddcda;}
 .footerbot{ background:#333; color:#999;}
 .footerNav{ margin:20px 0 10px 0; }
 .footerNav a{ color:#999;}
-.footerNav a:hover{ color:#f60; text-decoration:underline;}
+.footerNav a:hover{ color:#C0A062; text-decoration:underline;}
 .sep2{margin:0 10px;}
 .copy{ font-family:Arial, Helvetica, sans-serif;}
 .graylogo a{ display:block; height:37px; width:133px; background:url(/images/graylogo.jpg) left top no-repeat;}
@@ -221,7 +221,7 @@ _margin-bottom:15px;
 .coin_nav ul{ padding-left:30px;}
 .coin_nav ul li{ height:24px; line-height:24px; font-size:14px; color:#666;}
 .coin_nav ul li a{ line-height:24px; font-size:14px; color:#666;}
-.coin_nav ul li a:hover{ color:#f60; text-decoration:none;}
+.coin_nav ul li a:hover{ color:#C0A062; text-decoration:none;}
 .coin_nav p{ text-align:center;}
 .coin_copy{ border:0; width:180px;}
 .coin_copy p{ color:#999;}
@@ -232,7 +232,7 @@ _margin-bottom:15px;
 .coin_nav02{ width:300px; color:#666; font-size:14px;}
 .coin_nav02 .coin_phone400{ font-size:28px; color:#333; margin-top:10px;}
 .coin_nav02 .coin_phoneqq a{ display:block; width:110px; padding-left:20px; height:36px; font-size:18px; margin:10px auto; background:#f70 url(../images/ybc_phoneqq.png) 10px center no-repeat; border-radius:5px; color:#fff; line-height:36px;}
-.coin_nav02 .coin_phoneqq a:hover{ background:#f60 url(../images/ybc_phoneqq.png) 10px center no-repeat; text-decoration:none;}
+.coin_nav02 .coin_phoneqq a:hover{ background:#C0A062 url(../images/ybc_phoneqq.png) 10px center no-repeat; text-decoration:none;}
 
 .footer_aq{ width:1200px; border-top:1px solid #eee; margin:0 auto; padding-top:20px;}
 .footer_aq p{ text-align:center; color:#999; height:20px; line-height:20px;}
